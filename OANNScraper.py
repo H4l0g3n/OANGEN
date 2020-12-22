@@ -13,16 +13,13 @@ from selenium.webdriver import Chrome
 driver = Chrome(executable_path="C:/ChromeDriver/chromedriver.exe")
 driver.get("https://www.oann.com/category/newsroom/page/2/")
 
-def get_headline_data(box):
-    try:
-        headline_text = box.find_element_by_xpath('//*[@id="main-content"]/article[]/header/h3/a/text()').text
-        print(headline_text)
-        return(headline_text)
-    except NoSuchElementException:
-        return
 
-headline_boxes = driver.find_elements_by_xpath('//*[@id="main-content"]/article')
+def get_headline_data(box):
+    headline_text = box.find_element_by_xpath('//*[@id="main-content"]/article[*]/header/h3/a').text
+    print(headline_text)
+
+
+headline_boxes = driver.find_elements_by_xpath('//*[@id="main-content"]/article[@*]')
 
 for box in headline_boxes:
-    headline = get_headline_data(box)
-    print(headline)
+    get_headline_data(box)
