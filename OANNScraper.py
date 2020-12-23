@@ -13,13 +13,15 @@ from selenium.webdriver import Chrome
 driver = Chrome(executable_path="C:/ChromeDriver/chromedriver.exe")
 driver.get("https://www.oann.com/category/newsroom/page/2/")
 
-
-def get_headline_data(box):
-    headline_text = box.find_element_by_xpath('//*[@id="main-content"]/article[*]/header/h3/a').text
-    print(headline_text)
-
-
 headline_boxes = driver.find_elements_by_xpath('//*[@id="main-content"]/article[@*]')
+headlines = []
+x = 0
+while x < 9:
+    headlines.append(headline_boxes[x].text)
+    print(headlines[x])
+    x += 1
 
-for box in headline_boxes:
-    get_headline_data(box)
+
+
+
+
